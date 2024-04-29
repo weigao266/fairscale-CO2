@@ -4,3 +4,4 @@
 # LICENSE file in the root directory of this source tree.
 
 from .gossip import SlowMoBaseAlgorithm, SlowMoDistributedDataParallel  # noqa
+from .gossip import CO2BaseAlgorithm, CO2DistributedDataParallel

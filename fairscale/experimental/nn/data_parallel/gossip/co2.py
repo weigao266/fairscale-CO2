@@ -132,11 +132,10 @@ class CO2DistributedDataParallel(Module):
         self.ef1: Optional[List[torch.Tensor]] = None
         self.global_momentum_buffers_initialized = False
 
-        # Comment this block to use CO2 inside a node
-        # if self.master_group is None:
-        #     assert self.localsgd
-        #     self.localsgd = False
-        #     self.logger.warning("Disabling LocalSGD since a local allreduce will suffice")
+        if self.master_group is None:
+            assert self.localsgd
+            self.localsgd = False
+            self.logger.warning("Disabling LocalSGD since a local allreduce will suffice")
 
         if self.co2 and not self.localsgd:
             self.logger.warning("CO2 is being used without LocalSGD")
